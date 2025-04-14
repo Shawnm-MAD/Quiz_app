@@ -55,3 +55,13 @@ void _nextQuestion() {
       _currentQuestionIndex++;
     });
   }
+
+Widget _buildOptionButton(String option) {
+    return ElevatedButton(
+      onPressed: _answered ? null : () => _submitAnswer(option),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue,
+      ),
+      child: Text(option),
+    );
+  }
