@@ -20,3 +20,15 @@ class _QuizScreenState extends State<QuizScreen> {
     super.initState();
     _loadQuestions(); // Fetch questions when screen loads
   }
+
+  Future<void> _loadQuestions() async {
+    try {
+      final questions = await ApiService.fetchQuestions();
+      setState(() {
+        _questions = questions;
+        _loading = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
