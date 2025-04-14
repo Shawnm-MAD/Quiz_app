@@ -32,3 +32,17 @@ class _QuizScreenState extends State<QuizScreen> {
       print(e);
     }
   }
+
+void _submitAnswer(String selectedAnswer) {
+    setState(() {
+      _answered = true;
+      _selectedAnswer = selectedAnswer;
+      final correctAnswer = _questions[_currentQuestionIndex].correctAnswer;
+      if (selectedAnswer == correctAnswer) {
+        _score++;
+        _feedbackText = "Correct! The answer is $correctAnswer.";
+      } else {
+        _feedbackText = "Incorrect. The correct answer is $correctAnswer.";
+      }
+    });
+  }
