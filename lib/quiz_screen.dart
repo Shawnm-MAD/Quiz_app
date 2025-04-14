@@ -103,3 +103,29 @@ Widget _buildOptionButton(String option) {
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 16),
+            ...question.options.map((option) => _buildOptionButton(option)),
+
+            SizedBox(height: 20),
+
+            // Commit: Show answer feedback and next button
+            if (_answered)
+              Text(
+                _feedbackText,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: _selectedAnswer == question.correctAnswer
+                      ? Colors.green
+                      : Colors.red,
+                ),
+              ),
+            if (_answered)
+              ElevatedButton(
+                onPressed: _nextQuestion,
+                child: Text('Next Question'),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
