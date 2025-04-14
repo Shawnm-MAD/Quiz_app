@@ -46,3 +46,12 @@ void _submitAnswer(String selectedAnswer) {
       }
     });
   }
+
+void _nextQuestion() {
+    setState(() {
+      _answered = false;
+      _selectedAnswer = "";
+      _feedbackText = "";
+      _currentQuestionIndex++;
+    });
+  }
