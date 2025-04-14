@@ -65,3 +65,41 @@ Widget _buildOptionButton(String option) {
       child: Text(option),
     );
   }
+
+@override
+  Widget build(BuildContext context) {
+    if (_loading) {
+      return Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_currentQuestionIndex >= _questions.length) {
+      return Scaffold(
+        body: Center(
+          child: Text(
+            'Quiz Finished! Your Score: $_score/${_questions.length}',
+            style: TextStyle(fontSize: 22),
+          ),
+        ),
+      );
+    }
+
+    final question = _questions[_currentQuestionIndex];
+    return Scaffold(
+      appBar: AppBar(title: Text('Quiz App')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Question ${_currentQuestionIndex + 1}/${_questions.length}',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 16),
+            Text(
+              question.question,
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 16),
